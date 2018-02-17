@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IAK Trivia</string>
+    <string name="start">Mulai</string>
+    <string name="stop">Berhenti</string>
+    <string name="finish">Selesai</string>
+</resources>
