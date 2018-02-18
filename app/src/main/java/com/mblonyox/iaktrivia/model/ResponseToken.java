@@ -1,8 +1,16 @@
 package com.mblonyox.iaktrivia.model;
 
-public class ResponseToken {
+import com.google.gson.annotations.SerializedName;
+
+public class ResponseToken{
+
+	@SerializedName("response_code")
 	private int responseCode;
+
+	@SerializedName("response_message")
 	private String responseMessage;
+
+	@SerializedName("token")
 	private String token;
 
 	public void setResponseCode(int responseCode){
@@ -32,7 +40,7 @@ public class ResponseToken {
 	@Override
  	public String toString(){
 		return 
-			"ResponseToken{" +
+			"ResponseToken{" + 
 			"response_code = '" + responseCode + '\'' + 
 			",response_message = '" + responseMessage + '\'' + 
 			",token = '" + token + '\'' + 

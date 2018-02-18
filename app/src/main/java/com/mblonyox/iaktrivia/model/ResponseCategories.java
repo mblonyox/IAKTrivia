@@ -1,8 +1,11 @@
 package com.mblonyox.iaktrivia.model;
 
 import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class ResponseCategories{
+
+	@SerializedName("trivia_categories")
 	private List<TriviaCategoriesItem> triviaCategories;
 
 	public void setTriviaCategories(List<TriviaCategoriesItem> triviaCategories){

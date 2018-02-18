@@ -1,9 +1,14 @@
 package com.mblonyox.iaktrivia.model;
 
 import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class ResponseTrivia{
+
+	@SerializedName("response_code")
 	private int responseCode;
+
+	@SerializedName("results")
 	private List<ResultsItem> results;
 
 	public void setResponseCode(int responseCode){
