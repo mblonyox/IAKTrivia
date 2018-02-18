@@ -6,4 +6,5 @@
     <string name="select_category">Pilih Kategori</string>
     <string name="select_difficulty_level">Pilih Tingkat Kesulitan</string>
     <string name="any">Apa Saja</string>
+    <string name="question_number">Pertanyaan nomor :</string>
 </resources>

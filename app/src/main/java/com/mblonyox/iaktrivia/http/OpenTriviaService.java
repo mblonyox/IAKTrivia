@@ -24,8 +24,9 @@ public interface OpenTriviaService {
 
     @GET("api.php")
     Call<ResponseTrivia> getTrivia(
-            @Query("amount") int amount,
-            @Query("category") int category_id,
+            @Query("amount") Integer amount,
+            @Query("category") Integer category_id,
+            @Query("difficulty") String difficluty,
             @Query("token") String token
     );
 }

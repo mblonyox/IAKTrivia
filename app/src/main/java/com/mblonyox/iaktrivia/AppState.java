@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import com.mblonyox.iaktrivia.http.OpenTriviaAPI;
 import com.mblonyox.iaktrivia.model.ResponseCategories;
 import com.mblonyox.iaktrivia.model.ResponseToken;
+import com.mblonyox.iaktrivia.model.ResultsItem;
 import com.mblonyox.iaktrivia.model.TriviaCategoriesItem;
 
 import retrofit2.Call;
@@ -30,6 +31,7 @@ public class AppState extends Application {
     private SharedPreferences sharedPreferences;
     private String sessionToken;
     private List<TriviaCategoriesItem> triviaCategories;
+    private List<ResultsItem> triviaQuestions;
 
     @Override
     public void onCreate() {
@@ -89,6 +91,14 @@ public class AppState extends Application {
         Log.d("sharedPref", serializedCategories);
     }
 
+
+    public List<ResultsItem> getTriviaQuestions() {
+        return triviaQuestions;
+    }
+
+    public void setTriviaQuestions(List<ResultsItem> triviaQuestions) {
+        this.triviaQuestions = triviaQuestions;
+    }
 
     private void requestSessionToken() {
         OpenTriviaAPI.getClient()

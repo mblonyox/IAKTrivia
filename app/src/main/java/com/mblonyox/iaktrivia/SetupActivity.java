@@ -1,13 +1,17 @@
 package com.mblonyox.iaktrivia;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.mblonyox.iaktrivia.http.OpenTriviaAPI;
+import com.mblonyox.iaktrivia.model.ResponseTrivia;
 import com.mblonyox.iaktrivia.model.TriviaCategoriesItem;
 
 import java.util.ArrayList;
@@ -16,6 +20,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SetupActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     @BindView(R.id.spinner_category)
@@ -24,12 +31,15 @@ public class SetupActivity extends AppCompatActivity implements AdapterView.OnIt
     Spinner spinnerDifficulty;
     @BindView(R.id.setup_button)
     Button setupButton;
+    @BindView(R.id.setup_progress)
+    RelativeLayout setupProgress;
 
     List<TriviaCategoriesItem> categories;
     List<String> categoryText;
     List<Integer> categoryId;
-    int selectedCategory;
+    Integer selectedCategory;
     String selectedDifficulty;
+    String sessionToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,7 @@ public class SetupActivity extends AppCompatActivity implements AdapterView.OnIt
 
         AppState appState = (AppState) getApplicationContext();
         categories = appState.getTriviaCategories();
+        sessionToken = appState.getSessionToken();
         fillSpinnerCategory();
         fillSpinnerDifficulty();
     }
@@ -50,7 +61,7 @@ public class SetupActivity extends AppCompatActivity implements AdapterView.OnIt
         categoryId = new ArrayList<Integer>();
 
         categoryText.add(getString(R.string.any));
-        categoryId.add(0);
+        categoryId.add(null);
 
         for (int i = 0; i < categories.size(); i++) {
             TriviaCategoriesItem item = categories.get(i);
@@ -88,7 +99,7 @@ public class SetupActivity extends AppCompatActivity implements AdapterView.OnIt
 
     public void onNothingSelected(AdapterView<?> parent) {
         if (parent.getId() == R.id.spinner_category) {
-            selectedCategory = 0;
+            selectedCategory = null;
         } else if (parent.getId() == R.id.spinner_difficulty) {
             selectedDifficulty = "any";
         }
@@ -96,7 +107,33 @@ public class SetupActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @OnClick(R.id.setup_button)
     public void onViewClicked() {
-        //TODO: Tampilkan progress bar. Jalankan request api.
+        setupProgress.setVisibility(View.VISIBLE);
+        if(selectedDifficulty != null && selectedDifficulty.equals("any")) {
+            selectedDifficulty = null;
+        }
+        OpenTriviaAPI.getClient()
+                .getTrivia(
+                        10,
+                        selectedCategory,
+                        selectedDifficulty,
+                        sessionToken
+                )
+                .enqueue(new Callback<ResponseTrivia>() {
+                    @Override
+                    public void onResponse(Call<ResponseTrivia> call, Response<ResponseTrivia> response) {
+                        setupProgress.setVisibility(View.GONE);
+                        if(response.body().getResponseCode() == 0) {
+                            AppState appState = (AppState) getApplicationContext();
+                            appState.setTriviaQuestions(response.body().getResults());
+                            startActivity(new Intent(getApplicationContext(), QuestionActivity.class));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseTrivia> call, Throwable t) {
+                        setupProgress.setVisibility(View.GONE);
+                    }
+                });
     }
 
     //TODO: Buat method untuk request api.
