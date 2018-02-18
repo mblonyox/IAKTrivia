@@ -32,6 +32,8 @@ public class AppState extends Application {
     private String sessionToken;
     private List<TriviaCategoriesItem> triviaCategories;
     private List<ResultsItem> triviaQuestions;
+    private int currentScore;
+    private int currentPotentialScore;
 
     @Override
     public void onCreate() {
@@ -137,6 +139,25 @@ public class AppState extends Application {
                             }
                         }
                 );
+    }
+
+
+    public int getCurrentScore() {
+        return currentScore;
+    }
+
+    public int getCurrentPotentialScore() {
+        return currentPotentialScore;
+    }
+
+    public void resetCurrentScore() {
+        currentScore = 0;
+        currentPotentialScore = 0;
+    }
+
+    public void increaseCurrentScore(int score, boolean correct) {
+        if (correct) currentScore += score;
+        currentPotentialScore += score;
     }
 
     private void logToast(String message) {

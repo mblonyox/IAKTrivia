@@ -6,5 +6,17 @@
     <string name="select_category">Pilih Kategori</string>
     <string name="select_difficulty_level">Pilih Tingkat Kesulitan</string>
     <string name="any">Apa Saja</string>
-    <string name="question_number">Pertanyaan nomor :</string>
+    <string name="question_number">"Pertanyaan nomor : "</string>
+    <string name="difficulty_level">"Tingkat Kesulitan : "</string>
+    <string name="answer_is_correct">Ya. Jawaban anda benar!</string>
+    <string name="answer_is_wrong">Maaf. Jawaban anda salah!</string>
+    <string name="next_question">Pertanyaan selanjutnya.</string>
+    <string name="answer">Jawaban</string>
+    <string name="quiz_finished">Kuis telah selesai.</string>
+    <string name="you_score_is">"Nilai anda adalah : "</string>
+    <string name="back">Kembali</string>
+    <string name="share">Bagikan</string>
+    <string name="share_subject">Kuis Trivia</string>
+    <string name="share_message">Hai, aku dapat nila %d di aplikasi ini. Cobalah!</string>
+    <string name="share_to">Bagikan kepada ...</string>
 </resources>

@@ -93,7 +93,20 @@ public class SetupActivity extends AppCompatActivity implements AdapterView.OnIt
         if (parent.getId() == R.id.spinner_category) {
             selectedCategory = categoryId.get(i);
         } else if (parent.getId() == R.id.spinner_difficulty) {
-            selectedDifficulty = parent.getSelectedItem().toString().toLowerCase();
+            switch (i) {
+                case 1:
+                    selectedDifficulty = "easy";
+                    break;
+                case 2:
+                    selectedDifficulty = "medium";
+                    break;
+                case 3:
+                    selectedDifficulty = "hard";
+                    break;
+                default:
+                    selectedDifficulty = "any";
+                    break;
+            }
         }
     }
 
@@ -136,5 +149,4 @@ public class SetupActivity extends AppCompatActivity implements AdapterView.OnIt
                 });
     }
 
-    //TODO: Buat method untuk request api.
 }

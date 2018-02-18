@@ -9,5 +9,17 @@
     <string name="select_category">Select Category</string>
     <string name="select_difficulty_level">Select Difficulty Level</string>
     <string name="any">Any</string>
-    <string name="question_number">Question number :</string>
+    <string name="question_number">"Question number : "</string>
+    <string name="difficulty_level">"Difficulty Level : "</string>
+    <string name="answer_is_correct">Yeah. Your answer is correct!</string>
+    <string name="answer_is_wrong">Sorry. Your answer is wrong!</string>
+    <string name="next_question">Next question.</string>
+    <string name="answer">Answer</string>
+    <string name="quiz_finished">Quiz is finished.</string>
+    <string name="you_score_is">Your score is :</string>
+    <string name="back">Back</string>
+    <string name="share">Share</string>
+    <string name="share_subject">Trivia Quiz</string>
+    <string name="share_message">Hey, I score %d in this quiz app. Check this out.</string>
+    <string name="share_to">Share to ...</string>
 </resources>

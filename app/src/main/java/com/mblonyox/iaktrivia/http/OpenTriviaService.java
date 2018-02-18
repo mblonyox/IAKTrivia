@@ -19,14 +19,11 @@ public interface OpenTriviaService {
     @GET("api_token.php?command=request")
     Call<ResponseToken> requestToken();
 
-    @GET("api_token.php?command=reset")
-    Call<ResponseToken> resetToken(@Query("token") String token);
-
     @GET("api.php")
     Call<ResponseTrivia> getTrivia(
             @Query("amount") Integer amount,
             @Query("category") Integer category_id,
-            @Query("difficulty") String difficluty,
+            @Query("difficulty") String difficulty,
             @Query("token") String token
     );
 }

@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SetupActivity" />
-        <activity android:name=".QuestionActivity"></activity>
+        <activity android:name=".QuestionActivity" />
+        <activity android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>
